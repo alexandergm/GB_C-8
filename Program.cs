@@ -4,18 +4,19 @@ using System.IO;
 
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        Console.WriteLine("Enter the directory path:");
-        string directoryPath = Console.ReadLine();
+        if (args.Length != 2)
+        {
+            Console.WriteLine("Usage: utility.exe <extension> <text>");
+            return;
+        }
 
-        Console.WriteLine("Enter the file extension:");
-        string extension = Console.ReadLine();
+        string extension = args[0];
+        string searchText = args[1];
 
-        Console.WriteLine("Enter the text to search:");
-        string searchText = Console.ReadLine();
-
-        SearchFiles(directoryPath, extension, searchText);
+        string currentDirectory = Directory.GetCurrentDirectory();
+        SearchFiles(currentDirectory, extension, searchText);
     }
 
     static void SearchFiles(string directoryPath, string extension, string searchText)
